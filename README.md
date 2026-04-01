@@ -103,12 +103,13 @@ fi
 
 ### 2) Using the Advanced SSH & Web Terminal addon you need to do a few things:
 
-Disable protected mode in the addon's settings
-Type this at the terminal prompt so we can test the script: docker exec -it homeassistant bash
-Then navigate to the shell_scripts folder and make the script executable (once): chmod +x foxess_set_soc.sh
-Then any time you paste in code in File Editor, run this in terminal to fix the line endings: dos2unix foxess_set_soc.sh
-Then you can run it to test it: ./foxess_set_soc.sh 100
-You can verify in the FoxESSCloud app or website that the battery reserve capacity and system min soc were changed to 100. You can run the script again to change the numbers back again.
+- Disable protected mode in the addon's settings
+- Type this at the terminal prompt so we can test the script: **docker exec -it homeassistant bash**
+- Then navigate to the shell_scripts folder and make the script executable (once): **chmod +x foxess_set_soc.sh**
+- Then any time you paste in code in File Editor, run this in terminal to fix the line endings: **dos2unix foxess_set_soc.sh**
+- Then you can run it to test it: **./foxess_set_soc.sh 100**
+- You can verify in the FoxESSCloud app or website that the battery reserve capacity and system min soc were changed to 100. You can run the script again to change the numbers back again.
+
 
 ### 3) In File Editor, add this shell command to your configuration.yaml:
 
@@ -116,6 +117,7 @@ You can verify in the FoxESSCloud app or website that the battery reserve capaci
 # Custom shell command script to call FoxESS via web to set min soc of batteries shell_command:
  foxess_set_soc: bash shell_scripts/foxess_set_soc.sh {{ soc_on_grid }}
 ```
+
 
 ### 4) In the Home Assistant UI (Settings > Automations > Scripts), create two scripts:
 
@@ -130,6 +132,7 @@ data: soc_on_grid: 20
 action: shell_command.foxess_set_soc
 ```
 
+
 ### 5) Create an automation to call the script, e.g. when electricity rate is cheap
 
 Settings > Automations & Scenes > Automations
@@ -139,6 +142,7 @@ For example, I use Octopus Intelligent Go, so using the current rate electricity
 I'm sure there are some others I could add for free sessions too, but I've not got that far.
 
 <img width="2527" height="961" alt="Screenshot 2026-04-01 212648" src="https://github.com/user-attachments/assets/76dc502f-0895-4901-87de-54a382b4fd07" />
+
 
 ### 6) Restart Home Assistant
 
